@@ -127,7 +127,7 @@
         function generateKey() {
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             let key = '';
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 32; i++) { // Генерация ключа длиной 32 символа
                 key += chars.charAt(Math.floor(Math.random() * chars.length));
             }
             document.getElementById("keyInput").value = key;
