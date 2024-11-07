@@ -2,9 +2,112 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Добавил для адаптивности -->
     <title>ShiftCode</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Основные стили */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #181a1b;
+            color: #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        h1 {
+            color: #10a37f;
+            margin-bottom: 20px;
+            font-size: 2em; /* Увеличил размер заголовка для больших экранов */
+            font-weight: bold;
+            text-align: center;
+        }
+        label {
+            color: #e5e7eb;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+
+        /* Стили полей и кнопок */
+        input, textarea {
+            width: 100%;
+            max-width: 100%; /* Заменил на 100% для адаптивности */
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background-color: #2d2f34;
+            color: #e5e7eb;
+            font-size: 1.1em;
+            font-family: Arial, sans-serif;
+            resize: none;
+        }
+        input:focus, textarea:focus {
+            outline: 2px solid #10a37f;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #e5e7eb;
+            background-color: #3d3f44;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px;
+            font-family: Arial, sans-serif;
+            width: 100%; /* Сделал кнопку шириной 100% */
+        }
+        button:hover {
+            background-color: #10a37f;
+        }
+
+        /* Стиль для контейнера */
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+            background-color: #222428;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Медиа-запросы для мобильных устройств */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em; /* Уменьшаем заголовок на мобильных */
+            }
+            button {
+                font-size: 1em; /* Уменьшаем размер шрифта для кнопок на мобильных */
+            }
+            input, textarea {
+                font-size: 1em; /* Уменьшаем размер шрифта для инпутов на мобильных */
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em; /* Уменьшаем заголовок для планшетов */
+            }
+            button {
+                font-size: 1.1em; /* Размер шрифта для кнопок на планшетах */
+            }
+            input, textarea {
+                font-size: 1.1em; /* Размер шрифта для инпутов на планшетах */
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -19,6 +122,54 @@
         <label for="outputText">Результат:</label>
         <textarea id="outputText" rows="5" placeholder="Результат..." readonly></textarea>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        function generateKey() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let key = '';
+            for (let i = 0; i < 32; i++) { // Генерация ключа длиной 32 символа
+                key += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById("keyInput").value = key;
+        }
+
+        function encryptText() {
+            const text = document.getElementById("inputText").value;
+            const key = document.getElementById("keyInput").value;
+            if (!key) {
+                alert("Введите ключ для шифрования!");
+                return;
+            }
+            let encryptedText = "";
+
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const keyChar = key[i % key.length];
+                const shift = keyChar.charCodeAt(0) % 26;
+                encryptedText += String.fromCharCode(char.charCodeAt(0) + shift);
+            }
+
+            document.getElementById("outputText").value = encryptedText;
+        }
+
+        function decryptText() {
+            const encryptedText = document.getElementById("inputText").value;
+            const key = document.getElementById("keyInput").value;
+            if (!key) {
+                alert("Введите ключ для дешифровки!");
+                return;
+            }
+            let decryptedText = "";
+
+            for (let i = 0; i < encryptedText.length; i++) {
+                const char = encryptedText[i];
+                const keyChar = key[i % key.length];
+                const shift = keyChar.charCodeAt(0) % 26;
+                decryptedText += String.fromCharCode(char.charCodeAt(0) - shift);
+            }
+
+            document.getElementById("outputText").value = decryptedText;
+        }
+    </script>
 </body>
 </html>
