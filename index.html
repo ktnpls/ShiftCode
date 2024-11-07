@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShiftCode</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ShiftCode с Ключом</h1>
+        <label for="keyInput">Ключ:</label>
+        <input type="text" id="keyInput" placeholder="Введите ключ или нажмите 'Сгенерировать'" />
+        <button onclick="generateKey()">Сгенерировать ключ</button>
+        <label for="inputText">Текст:</label>
+        <textarea id="inputText" rows="5" placeholder="Введите текст для шифровки/дешифровки..."></textarea>
+        <button onclick="encryptText()">Зашифровать</button>
+        <button onclick="decryptText()">Расшифровать</button>
+        <label for="outputText">Результат:</label>
+        <textarea id="outputText" rows="5" placeholder="Результат..." readonly></textarea>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

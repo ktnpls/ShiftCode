@@ -1,0 +1,102 @@
+/* Основные стили */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #181a1b;
+    color: #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+h1 {
+    color: #10a37f;
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+label {
+    color: #e5e7eb;
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+
+/* Стили полей и кнопок */
+input, textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    background-color: #2d2f34;
+    color: #e5e7eb;
+    font-size: 1.1em;
+    font-family: Arial, sans-serif;
+    resize: none;
+}
+input:focus, textarea:focus {
+    outline: 2px solid #10a37f;
+}
+button {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #e5e7eb;
+    background-color: #3d3f44;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 5px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+}
+button:hover {
+    background-color: #10a37f;
+}
+
+/* Стиль для контейнера */
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    background-color: #222428;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5em;
+    }
+    button {
+        font-size: 1em;
+    }
+    input, textarea {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    button {
+        font-size: 1.1em;
+    }
+    input, textarea {
+        font-size: 1.1em;
+    }
+}
